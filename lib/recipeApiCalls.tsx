@@ -20,9 +20,11 @@ export async function fetchRecipes(
   cuisineQuery: string | null,
   recipeQueryString: string | null
 ): Promise<CreateRecipe[] | undefined> {
-  console.log("cuisineQuery", cuisineQuery);
-  console.log("recipeQueryString", recipeQueryString);
-  let constructUrl = "http://localhost:4000/recipe/queryRecipe";
+  let constructUrl = `${
+    process.env.backendUrlPath
+      ? process.env.backendUrlPath
+      : "http://localhost:4000"
+  }/recipe/queryRecipe`;
   if (cuisineQuery || recipeQueryString) {
     constructUrl = constructUrl + "?";
   }
@@ -33,7 +35,6 @@ export async function fetchRecipes(
     constructUrl = constructUrl + `${cuisineQuery ? `&` : ""}`;
     constructUrl = constructUrl + `recipeQueryString=${recipeQueryString}`;
   }
-  console.log("constructUrl", constructUrl);
   try {
     const res = await fetch(constructUrl);
     if (!res.ok) throw new Error("Fetch Recipes error!");
@@ -49,7 +50,11 @@ export async function fetchRecipeByDisplayUrl(
 ): Promise<CreateRecipe | undefined> {
   try {
     const res = await fetch(
-      `http://localhost:4000/recipe/displayUrl/${displayUrl}`
+      `${
+        process.env.backendUrlPath
+          ? process.env.backendUrlPath
+          : "http://localhost:4000"
+      }/recipe/displayUrl/${displayUrl}`
     );
     if (!res.ok) throw new Error("Fetch Recipes error!");
     const data: CreateRecipe = await res.json();
