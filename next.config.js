@@ -11,7 +11,7 @@ const nextConfig = {
     ],
   },
   env: {
-    BACKEND_URL_PATH: process.env.NEXT_PUBLIC_SITE_URL,
+    BACKEND_URL_PATH: process.env.BACKEND_URL_PATH,
   },
 };
 
