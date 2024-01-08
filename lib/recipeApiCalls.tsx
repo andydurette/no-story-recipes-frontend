@@ -20,6 +20,10 @@ export async function fetchRecipes(
   cuisineQuery: string | null,
   recipeQueryString: string | null
 ): Promise<CreateRecipe[] | undefined> {
+  console.log(
+    "process.env.NEXT_PUBLIC_BACKEND_URL_PATH",
+    process.env.NEXT_PUBLIC_BACKEND_URL_PATH
+  );
   let constructUrl = `${
     process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
