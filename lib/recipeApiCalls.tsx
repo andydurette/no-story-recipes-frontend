@@ -21,8 +21,8 @@ export async function fetchRecipes(
   recipeQueryString: string | null
 ): Promise<CreateRecipe[] | undefined> {
   let constructUrl = `${
-    process.env.BACKEND_URL_PATH
-      ? process.env.BACKEND_URL_PATH
+    process.env.NEXT_PUBLIC_BACKEND_URL_PATH
+      ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       : "http://localhost:4000"
   }/recipe/queryRecipe`;
   if (cuisineQuery || recipeQueryString) {
@@ -51,8 +51,8 @@ export async function fetchRecipeByDisplayUrl(
   try {
     const res = await fetch(
       `${
-        process.env.BACKEND_URL_PATH
-          ? process.env.BACKEND_URL_PATH
+        process.env.NEXT_PUBLIC_BACKEND_URL_PATH
+          ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
           : "http://localhost:4000"
       }/recipe/displayUrl/${displayUrl}`
     );
