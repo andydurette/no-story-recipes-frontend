@@ -36,10 +36,10 @@ export default function Recipe({ params }: any) {
             ></div>
             <div className="flex flex-col bg-tang rounded-b-lg">
               <div className="p-5">
-                <h1 className="my-4 -mt-8 text-8xl font-bold tracking-tight text-white medium-grey">
+                <h1 className="my-4 -mt-8 text-6xl md:text-8xl font-bold tracking-tight text-white medium-grey">
                   {recipe.name}
                 </h1>
-                <h2 className="mt-6 mb-4 text-3xl tracking-tight text-white font-light">
+                <h2 className="mt-6 mb-4 text-2xl md:text-3xl tracking-tight text-white font-light">
                   {recipe.description}
                 </h2>
               </div>
