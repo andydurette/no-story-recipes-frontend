@@ -15,8 +15,8 @@ export default function Recipe({ params }: any) {
   }, [displayUrl]);
 
   return (
-    <main className="flex min-h-full flex-col justify-center content-center flex-wrap max-w-screen-xl m-0-auto">
-      <div>
+    <main className="flex min-h-full flex-col justify-center content-center flex-wrap max-w-screen-xl m-0-auto  box-border">
+      <div className="px-4 box-border">
         {recipe && (
           <>
             <div
