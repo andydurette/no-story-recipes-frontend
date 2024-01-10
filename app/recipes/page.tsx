@@ -48,7 +48,7 @@ export default function RecipeList() {
   }, [searchParams]);
 
   return (
-    <main className="flex min-h-full flex-row content-start py-16 px-16 flex-wrap max-w-screen-xl min-w-full">
+    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl min-w-full">
       <div className="basis-full mb-4 ">
         <RecipeSearch
           cuisine={cuisine}

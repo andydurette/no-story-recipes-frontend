@@ -56,7 +56,7 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                active === nav.title ? "text-white" : "text-dimWhite"
+                active === nav.title ? "text-tang" : "text-white"
               } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
               onClick={() => setActive(nav.title)}
             >
@@ -87,7 +87,7 @@ const Navbar = () => {
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-dimWhite"
+                    active === nav.title ? "text-tang" : "text-White"
                   } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                   onClick={() => {
                     setActive(nav.title);
