@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "No Story Recipes",
   description: "Andy Durette's recipes",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({

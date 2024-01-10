@@ -5,12 +5,7 @@ import leftArrow from "../../assets/leftArrow.svg";
 import Image from "next/image";
 import Link from "next/link";
 import RecipeSearch from "@/components/recipeSearch";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function RecipeList() {
   // Add query params to app
