@@ -22,7 +22,7 @@ export default function Recipe({ params }: any) {
             <div
               className="
               flex m-0-auto items-center justify-center bg-no-repeat 
-              flex-col py-10 height-auto min-h-[500px] mt-5 border-t-4 border-x-4 border-b-40 border-tang 
+              flex-col py-10 height-auto min-h-[300px] md:min-h-[500px] mt-5 border-t-4 border-x-4 border-b-40 border-tang 
               "
               style={{
                 borderTopLeftRadius: "5px",
@@ -50,33 +50,37 @@ export default function Recipe({ params }: any) {
 
       <div className="flex flex-col flex-wrap xl:flex-nowrap mt-8 mx-auto">
         <div className="flex flex-wrap mb-4 flex-row w-5/5 mx-4">
-          <h2 className="md:ml-0 basis-full mb-4 text-3xl tracking-tight text-white font-semibold flex flex-wrap">
+          <h2 className="md:ml-0 basis-full mb-4 text-2xl md:text-3xl tracking-tight text-white font-semibold flex flex-wrap">
             Ingredients
           </h2>
-          {recipe &&
-            recipe.ingredients.map((r: string, i: number) => {
-              return (
-                <div key={i} className="flex items-center mb-4 mr-4">
-                  <ul className="ml-5 flex flex-row sm:flex-col">
-                    <li className="list-disc text-2xl font-extralight">{r}</li>
-                  </ul>
-                </div>
-              );
-            })}
+          <div className="flex flex-wrap flex-col md:flex-row w-5/5 ">
+            {recipe &&
+              recipe.ingredients.map((r: string, i: number) => {
+                return (
+                  <div key={i} className="flex items-center mb-4 mr-4">
+                    <ul className="ml-5 flex flex-row sm:flex-col">
+                      <li className="list-disc text-xl md:text-2xl font-extralight">
+                        {r}
+                      </li>
+                    </ul>
+                  </div>
+                );
+              })}
+          </div>
         </div>
         <div className="flex flex-col w-5/5  mx-4">
-          <h2 className="md:ml-0 basis-full sm:basis-auto mb-4 text-3xl tracking-tight text-white font-semibold">
+          <h2 className="md:ml-0 basis-full sm:basis-auto mb-4 text-2xl md:text-3xl tracking-tight text-white font-semibold">
             Directions
           </h2>
           {recipe &&
             recipe.directions.map((r: string, i: number) => {
               return (
                 <div key={i}>
-                  <h3 className="mb-4 text-2xl tracking-tight text-gray-900 font-semibold">
+                  <h3 className="mb-4 text-xl md:text-2xl tracking-tight text-gray-900 font-semibold text-white">
                     Step {i + 1}
                   </h3>
                   <div key={i} className="flex items-center mb-4">
-                    <p className="text-2xl font-extralight">{r}</p>
+                    <p className="text-xl md:text-2xl font-extralight">{r}</p>
                   </div>
                 </div>
               );
