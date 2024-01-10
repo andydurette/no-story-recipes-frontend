@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import noStoryLogo from "../assets/noStoryLogo.svg";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
@@ -20,8 +20,28 @@ const Navbar = () => {
   const [active, setActive] = useState("ALL RECIPES");
   const [toggle, setToggle] = useState(false);
 
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleOutsideClick = (event: any) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      event.target !== buttonRef.current
+    ) {
+      setToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <nav className="w-12/12 sticky top-0 bg-heavy-grey">
+    <nav className="w-12/12 sticky top-0 bg-heavy-grey z-50">
       <div className="w-9/12 m-auto flex py-[18px] justify-between items-center navbar sticky top-0 bg-heavy-grey">
         {/* Logo */}
         <Link href="/">
@@ -57,6 +77,7 @@ const Navbar = () => {
 
           {/* Sidebar */}
           <div
+            ref={menuRef}
             className={`${
               !toggle ? "hidden" : "flex"
             } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar bg-black`}
@@ -68,7 +89,10 @@ const Navbar = () => {
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-dimWhite"
                   } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
-                  onClick={() => setActive(nav.title)}
+                  onClick={() => {
+                    setActive(nav.title);
+                    setToggle(false);
+                  }}
                 >
                   <Link href={`/${nav.id}`}>{nav.title}</Link>
                 </li>

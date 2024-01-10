@@ -51,10 +51,10 @@ export default function RecipeSearch({
 
   return (
     <form autoComplete="off">
-      <div className="flex">
+      <div className="flex flex-col-reverse md:flex-row max-w-screen-3xl mx-2">
         <label
           htmlFor="search-dropdown"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          className="mb-2 text-sm font-medium sr-only text-white"
         >
           Your culinary choices
         </label>
@@ -64,8 +64,8 @@ export default function RecipeSearch({
           ref={buttonRef}
           onClick={displayResponsiveMenu}
           className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
-           text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none
-          focus:ring-tang dark:bg-tang dark:hover:bg-dark-tang dark:focus:dark-tang dark:text-white dark:border-dark-tang"
+          border ounded-s-lg focus:ring-4 focus:outline-none rounded md:rounded-l md:rounded-r-none mt-3 md:mt-0
+          focus:ring-orange-300 bg-tang hover:bg-dark-tang focus:dark-tang text-white border-dark-tang"
           type="button"
         >
           {cuisine}
@@ -88,12 +88,15 @@ export default function RecipeSearch({
         <div
           id="dropdown"
           ref={menuRef}
-          className={`z-10 ${
-            !searchModal ? "hidden" : ""
-          } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 fixed mt-12`}
+          className={`z-10 ${!searchModal ? "hidden" : ""}
+          divide-y divide-gray-100 rounded-lg shadow
+          bg-gray-700 fixed w-[calc(100%-128px)] md:w-44
+          top-56 md:top-auto md:mt-10
+          `}
+          // style={{ top: "223px" }}
         >
           <ul
-            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            className="py-2 text-sm text-gray-200 bg-gray-700 rounded"
             aria-labelledby="dropdown-button"
           >
             {cuisineList.map((cuisine) => {
@@ -105,7 +108,7 @@ export default function RecipeSearch({
                       displayResponsiveMenu();
                       setCuisine(cuisine);
                     }}
-                    className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="inline-flex w-full px-4 py-2 hover:bg-gray-600 hover:text-white"
                   >
                     {cuisine}
                   </button>
@@ -118,7 +121,11 @@ export default function RecipeSearch({
           <input
             type="search"
             id="search-dropdown"
-            className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-tang focus:border-tang dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-tang"
+            className="
+            block p-2.5 w-full z-20 text-sm rounded-e-lg border-s-2 border bg-gray-700 
+            border-s-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-orange-300
+            rounded-l md:rounded-l-none
+            "
             placeholder="Search for burritos, burgers or anything else..."
             value={searchInput}
             onInput={(e) => {
@@ -134,8 +141,8 @@ export default function RecipeSearch({
               submitSearch();
             }}
             className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full
-             text-white bg-tang rounded-e-lg border border-tang hover:bg-tang focus:ring-4 focus:outline-none
-            focus:ring-dark-tang dark:bg-tang dark:hover:bg-tang dark:focus:tang"
+             text-white rounded-e-lg border border-tang focus:ring-4 focus:outline-none
+             bg-tang hover:bg-tang focus:ring-orange-300"
           >
             <svg
               className="w-4 h-4"

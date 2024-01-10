@@ -48,8 +48,8 @@ export default function RecipeList() {
   }, [searchParams]);
 
   return (
-    <main className="flex min-h-full flex-row justify-center content-center mx-16 flex-wrap max-w-screen-xl">
-      <div className="basis-full mb-4">
+    <main className="flex min-h-full flex-row content-start py-16 px-16 flex-wrap max-w-screen-xl min-w-full">
+      <div className="basis-full mb-4 ">
         <RecipeSearch
           cuisine={cuisine}
           setCuisine={setCuisine}
@@ -63,26 +63,28 @@ export default function RecipeList() {
           return (
             <div
               key={recipe.displayUrl}
-              className="rounded-lg dark:border-gray-700 bg-dark-tang overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] max-w-screen-sm"
+              className="rounded-lgborder-gray-700 bg-dark-tang overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] 
+              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-sm rounded"
             >
               <div
-                className="w-full h-[150px]"
+                className="w-full h-[175px] xl:h-[200px]"
                 style={{
                   backgroundImage: `url(${recipe.photoURL})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               ></div>
-              <div className="h-[calc(100%-150px)] p-4 flex flex-col justify-between content-between items-stretch justify-items-stretch">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <div className="h-[calc(100%-175px)] xl:h-[calc(100%-200px)] p-4 flex flex-col justify-between content-between items-stretch justify-items-stretch">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
                   {recipe.name}
                 </h5>
-                <p className="mb-3 font-normal text-white dark:text-white">
+                <p className="mb-3 font-normal text-white">
                   {recipe.description}
                 </p>
                 <Link
                   href={`/recipes/${recipe.displayUrl}`}
-                  className="w-[150px] inline-flex items-center px-3 py-2 text-md font-medium text-center text-white bg-tang rounded-lg hover:bg-light-grey focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-medium-grey dark:hover:bg-redium-gray dark:focus:ring-light-grey"
+                  className="w-[150px] inline-flex items-center px-3 py-2 text-md font-medium text-center text-white 
+                  bg-light-grey hover:bg-medium-grey rounded-lg  focus:ring-4 focus:outline-none focus:ring-orange-300  hover:bg-redium-gray"
                 >
                   View Recipe
                   <Image
@@ -96,12 +98,39 @@ export default function RecipeList() {
             </div>
           );
         })}
+      {/* Forces flex alignment of list items */}
       <div
-        className="rounded-lg dark:border-gray-700 bg-heavy-grey overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] max-w-screen-sm"
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl m-2 max-w-screen-sm
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]"
         style={{ visibility: "hidden" }}
       ></div>
       <div
-        className="rounded-lg dark:border-gray-700 bg-heavy-grey overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] max-w-screen-sm"
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
+        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        "
+        style={{ visibility: "hidden" }}
+      ></div>
+      <div
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
+        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        "
+        style={{ visibility: "hidden" }}
+      ></div>
+      <div
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
+        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        "
+        style={{ visibility: "hidden" }}
+      ></div>
+      <div
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
+        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        "
         style={{ visibility: "hidden" }}
       ></div>
     </main>

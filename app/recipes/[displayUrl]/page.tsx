@@ -36,10 +36,10 @@ export default function Recipe({ params }: any) {
             ></div>
             <div className="flex flex-col bg-tang rounded-b-lg">
               <div className="p-5">
-                <h1 className="my-4 -mt-8 text-8xl font-bold tracking-tight text-gray-900 dark:text-white medium-grey">
+                <h1 className="my-4 -mt-8 text-8xl font-bold tracking-tight text-white medium-grey">
                   {recipe.name}
                 </h1>
-                <h2 className="mt-6 mb-4 text-3xl tracking-tight text-gray-900 dark:text-white font-light">
+                <h2 className="mt-6 mb-4 text-3xl tracking-tight text-white font-light">
                   {recipe.description}
                 </h2>
               </div>
@@ -50,7 +50,7 @@ export default function Recipe({ params }: any) {
 
       <div className="flex flex-col flex-wrap xl:flex-nowrap mt-8 mx-auto">
         <div className="flex flex-wrap mb-4 flex-row w-5/5 mx-4">
-          <h2 className="md:ml-0 basis-full mb-4 text-3xl tracking-tight text-gray-900 dark:text-white font-semibold flex flex-wrap">
+          <h2 className="md:ml-0 basis-full mb-4 text-3xl tracking-tight text-white font-semibold flex flex-wrap">
             Ingredients
           </h2>
           {recipe &&
@@ -65,14 +65,14 @@ export default function Recipe({ params }: any) {
             })}
         </div>
         <div className="flex flex-col w-5/5  mx-4">
-          <h2 className="md:ml-0 basis-full sm:basis-auto mb-4 text-3xl tracking-tight text-gray-900 dark:text-white font-semibold">
+          <h2 className="md:ml-0 basis-full sm:basis-auto mb-4 text-3xl tracking-tight text-white font-semibold">
             Directions
           </h2>
           {recipe &&
             recipe.directions.map((r: string, i: number) => {
               return (
                 <div key={i}>
-                  <h3 className="mb-4 text-2xl tracking-tight text-gray-900 dark:text-white font-semibold">
+                  <h3 className="mb-4 text-2xl tracking-tight text-gray-900 font-semibold">
                     Step {i + 1}
                   </h3>
                   <div key={i} className="flex items-center mb-4">
