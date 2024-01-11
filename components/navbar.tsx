@@ -1,9 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import noStoryLogo from "../assets/noStoryLogo.svg";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const navLinks = [
   {
@@ -22,6 +21,22 @@ const Navbar = () => {
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    console.log("pathname", pathname);
+    if (pathname !== "/" && pathname !== "/recipes") {
+      setActive("NONE");
+    }
+
+    if (pathname === "/") {
+      setActive("HOME");
+    }
+    if (pathname === "/recipes") {
+      setActive("ALL RECIPES");
+    }
+  }, [pathname]);
 
   const handleOutsideClick = (event: any) => {
     if (
@@ -58,7 +73,6 @@ const Navbar = () => {
               className={`font-poppins font-normal cursor-pointer text-[16px] ${
                 active === nav.title ? "text-tang" : "text-white"
               } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-              onClick={() => setActive(nav.title)}
             >
               <Link href={`/${nav.id}`}>{nav.title}</Link>
             </li>
