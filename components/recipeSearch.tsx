@@ -63,8 +63,8 @@ export default function RecipeSearch({
           data-dropdown-toggle="dropdown"
           ref={buttonRef}
           onClick={displayResponsiveMenu}
-          className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
-          border ounded-s-lg focus:ring-4 focus:outline-none rounded md:rounded-l md:rounded-r-none mt-3 md:mt-0
+          className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center justify-between
+          border focus:ring-4 focus:outline-none rounded md:rounded-l md:rounded-r-none mt-3 md:mt-0
           focus:ring-orange-300 bg-tang hover:bg-dark-tang focus:dark-tang text-white border-dark-tang"
           type="button"
         >
@@ -90,10 +90,9 @@ export default function RecipeSearch({
           ref={menuRef}
           className={`z-10 ${!searchModal ? "hidden" : ""}
           divide-y divide-gray-100 rounded-lg shadow
-          bg-gray-700 fixed w-[calc(100%-128px)] md:w-44
-          top-56 md:top-auto md:mt-10
+          bg-gray-700 fixed w-[calc(100%-46px)] md:w-32
+          top-48 md:top-auto md:mt-[56px]
           `}
-          // style={{ top: "223px" }}
         >
           <ul
             className="py-2 text-sm text-gray-200 bg-gray-700 rounded"
