@@ -1,11 +1,12 @@
 "use client";
 import { fetchRecipes, CreateRecipe } from "@/lib/recipeApiCalls";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import leftArrow from "../../assets/leftArrow.svg";
 import Image from "next/image";
 import Link from "next/link";
 import RecipeSearch from "@/components/recipeSearch";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function RecipeList() {
   // Add query params to app
@@ -16,17 +17,25 @@ export default function RecipeList() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [cuisine, setCuisine] = useState<string>(cuisineList[0]);
   const searchParams = useSearchParams();
-
-  const submitSearch = async () => {
+  const debouncedValue = useDebounce<string>(searchInput, 500);
+  const submitSearch = useCallback(async () => {
     const addParams = new URLSearchParams();
     if (cuisine !== "All Cuisine") {
       addParams.set("cuisine", cuisine);
     }
-    if (searchInput) {
+    if (debouncedValue) {
       addParams.set("recipeQueryString", searchInput);
     }
     router.push("/recipes" + "?" + addParams);
-  };
+  }, [cuisine, debouncedValue, router, searchInput]);
+
+  useEffect(() => {
+    submitSearch();
+  }, [cuisine, submitSearch]);
+
+  useEffect(() => {
+    submitSearch();
+  }, [debouncedValue, submitSearch]);
 
   useEffect(() => {
     async function getRecipes() {
