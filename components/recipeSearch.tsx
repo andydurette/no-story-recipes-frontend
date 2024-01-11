@@ -64,7 +64,7 @@ export default function RecipeSearch({
           ref={buttonRef}
           onClick={displayResponsiveMenu}
           className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center justify-between
-          border focus:ring-4 focus:outline-none rounded md:rounded-l md:rounded-r-none mt-3 md:mt-0
+          border focus:ring-4 focus:outline-none rounded md:rounded-l md:rounded-r-none mt-4 md:mt-0
           focus:ring-orange-300 bg-tang hover:bg-dark-tang focus:dark-tang text-white border-dark-tang"
           type="button"
         >
