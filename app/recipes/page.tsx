@@ -96,35 +96,36 @@ export default function RecipeList() {
       {/* Forces flex alignment of list items */}
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl m-2 max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]"
-        style={{ visibility: "hidden" }}
-      ></div>
-      <div
-        className="
         rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
         rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
         rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
         rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        m-2 flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        "
+        style={{ visibility: "hidden" }}
+      ></div>
+      <div
+        className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
         "
         style={{ visibility: "hidden" }}
       ></div>
