@@ -126,7 +126,7 @@ export default function RecipeSearch({
             border-s-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-orange-300
             rounded-l md:rounded-l-none
             "
-            placeholder="Search for burritos, burgers or anything else..."
+            placeholder="Search for your favourites..."
             value={searchInput}
             onInput={(e) => {
               e.preventDefault();

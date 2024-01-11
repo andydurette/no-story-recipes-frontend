@@ -43,7 +43,7 @@ export default function RecipeList() {
   }, [searchParams]);
 
   return (
-    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl min-w-full">
+    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl min-w-full -mb-10">
       <div className="basis-full mb-4 ">
         <RecipeSearch
           cuisine={cuisine}
@@ -59,7 +59,7 @@ export default function RecipeList() {
             <div
               key={recipe.displayUrl}
               className="rounded-lgborder-gray-700 bg-dark-tang overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] 
-              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-sm rounded"
+              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-md rounded"
             >
               <div
                 className="w-full h-[175px] xl:h-[200px]"
@@ -96,36 +96,36 @@ export default function RecipeList() {
       {/* Forces flex alignment of list items */}
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
         "
         style={{ visibility: "hidden" }}
       ></div>
       <div
         className="
-        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-sm
-        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%]
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_40%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
         "
         style={{ visibility: "hidden" }}
       ></div>
