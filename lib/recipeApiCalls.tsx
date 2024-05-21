@@ -4,7 +4,7 @@ export enum cuisineEnum {
   american = "american",
 }
 
-export interface CreateRecipe {
+export interface Recipe {
   id: string;
   displayUrl: string;
   cuisine: cuisineEnum;
@@ -13,18 +13,17 @@ export interface CreateRecipe {
   ingredients: string[];
   name: string;
   photoURL: string;
-  published: boolean;
 }
 
 export async function fetchRecipes(
   cuisineQuery: string | null,
   recipeQueryString: string | null
-): Promise<CreateRecipe[] | undefined> {
+): Promise<Recipe[] | undefined> {
   let constructUrl = `${
     process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       : "http://localhost:4000"
-  }/recipe/queryRecipe`;
+  }/recipe/queryRecipes`;
   if (cuisineQuery || recipeQueryString) {
     constructUrl = constructUrl + "?";
   }
@@ -38,7 +37,7 @@ export async function fetchRecipes(
   try {
     const res = await fetch(constructUrl);
     if (!res.ok) throw new Error("Fetch Recipes error!");
-    const data: CreateRecipe[] = await res.json();
+    const data: Recipe[] = await res.json();
     return data;
   } catch (e) {
     if (e instanceof Error) console.log(e.stack);
@@ -47,7 +46,7 @@ export async function fetchRecipes(
 
 export async function fetchRecipeByDisplayUrl(
   displayUrl: string
-): Promise<CreateRecipe | undefined> {
+): Promise<Recipe | undefined> {
   try {
     const res = await fetch(
       `${
@@ -57,7 +56,7 @@ export async function fetchRecipeByDisplayUrl(
       }/recipe/displayUrl/${displayUrl}`
     );
     if (!res.ok) throw new Error("Fetch Recipes error!");
-    const data: CreateRecipe = await res.json();
+    const data: Recipe = await res.json();
     return data;
   } catch (e) {
     if (e instanceof Error) console.log(e.stack);

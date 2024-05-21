@@ -5,9 +5,10 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { cuisineEnum } from "../lib/recipeApiCalls";
 
 export interface RecipeSearchProps {
-  cuisine: string;
+  cuisine: cuisineEnum;
   setCuisine: Dispatch<SetStateAction<string>>;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
