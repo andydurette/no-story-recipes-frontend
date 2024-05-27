@@ -1,10 +1,13 @@
 "use client";
-import { CreateRecipe, fetchRecipeByDisplayUrl } from "@/lib/recipeApiCalls";
+import {
+  Recipe as RecipeType,
+  fetchRecipeByDisplayUrl,
+} from "@/lib/recipeApiCalls";
 import { useEffect, useState } from "react";
 
 export default function Recipe({ params }: any) {
   const displayUrl = params.displayUrl;
-  const [recipe, setRecipe] = useState<CreateRecipe | undefined>();
+  const [recipe, setRecipe] = useState<RecipeType | undefined>();
 
   useEffect(() => {
     async function getRecipe() {
