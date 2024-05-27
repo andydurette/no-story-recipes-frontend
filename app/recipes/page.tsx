@@ -14,12 +14,12 @@ export default function RecipeList() {
   // Handle search params
   const [recipes, setRecipes] = useState<Recipe[] | undefined>();
   const [searchInput, setSearchInput] = useState<string>("");
-  const [cuisine, setCuisine] = useState<string>("");
+  const [cuisine, setCuisine] = useState<string>("All Cuisine");
   const searchParams = useSearchParams();
   const debouncedValue = useDebounce<string>(searchInput, 500);
   const submitSearch = useCallback(async () => {
     const addParams = new URLSearchParams();
-    if (cuisine !== "") {
+    if (cuisine !== "All Cuisine") {
       addParams.set("cuisine", cuisine);
     }
     if (debouncedValue) {
