@@ -1,5 +1,5 @@
 "use client";
-import { fetchRecipes, CreateRecipe } from "@/lib/recipeApiCalls";
+import { fetchRecipes, Recipe } from "@/lib/recipeApiCalls";
 import { useCallback, useEffect, useState } from "react";
 import leftArrow from "../../assets/leftArrow.svg";
 import Image from "next/image";
@@ -12,15 +12,14 @@ export default function RecipeList() {
   // Add query params to app
   const router = useRouter();
   // Handle search params
-  const cuisineList = ["All Cuisine", "American", "Japanese", "Mexican"];
-  const [recipes, setRecipes] = useState<CreateRecipe[] | undefined>();
+  const [recipes, setRecipes] = useState<Recipe[] | undefined>();
   const [searchInput, setSearchInput] = useState<string>("");
-  const [cuisine, setCuisine] = useState<string>(cuisineList[0]);
+  const [cuisine, setCuisine] = useState<string>("");
   const searchParams = useSearchParams();
   const debouncedValue = useDebounce<string>(searchInput, 500);
   const submitSearch = useCallback(async () => {
     const addParams = new URLSearchParams();
-    if (cuisine !== "All Cuisine") {
+    if (cuisine !== "") {
       addParams.set("cuisine", cuisine);
     }
     if (debouncedValue) {

@@ -5,10 +5,9 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { cuisineEnum } from "../lib/recipeApiCalls";
 
 export interface RecipeSearchProps {
-  cuisine: cuisineEnum;
+  cuisine: string;
   setCuisine: Dispatch<SetStateAction<string>>;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
@@ -20,8 +19,8 @@ export default function RecipeSearch({
   setCuisine,
   searchInput,
   setSearchInput,
-  submitSearch,
-}: RecipeSearchProps) {
+}: // submitSearch,
+RecipeSearchProps) {
   const cuisineList = ["All Cuisine", "American", "Japanese", "Mexican"];
 
   //create constant reference to the useRef();
