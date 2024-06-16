@@ -1,6 +1,17 @@
+<p align="center">
+    <img src="./assets/adaptive-icon.png" width="250" height="250" />
+</p>
+<center>
+    <h1> No Story Recipes Front End </h1>
+</center>
+
+## Usage
+
+Repo of code that can process new a backend passiogn recipe information and displaying it ot users.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started with repo using Next Js
 
 First, run the development server:
 

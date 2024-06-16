@@ -25,7 +25,6 @@ const Navbar = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log("pathname", pathname);
     if (pathname !== "/" && pathname !== "/recipes") {
       setActive("NONE");
     }
