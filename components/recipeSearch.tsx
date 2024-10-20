@@ -84,7 +84,7 @@ RecipeSearchProps) {
         e.preventDefault();
       }}
     >
-      <div className="flex flex-col-reverse md:flex-row max-w-screen-3xl mx-2">
+      <div className="flex flex-col-reverse md:flex-row max-w-screen-3xl mx-2 relative">
         <label
           htmlFor="search-dropdown"
           className="mb-2 text-sm font-medium sr-only text-white"
@@ -123,7 +123,7 @@ RecipeSearchProps) {
           ref={menuRef}
           className={`z-10 ${!searchModal ? "hidden" : ""}
           divide-y divide-gray-100 rounded-lg shadow
-          bg-gray-700 fixed w-[calc(100%-46px)] md:w-40
+          bg-gray-700 absolute w-[calc(100%-46px)] md:w-40
           top-48 md:top-auto md:mt-[56px]
           `}
         >

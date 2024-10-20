@@ -75,15 +75,8 @@ export default function RecipeList() {
   }, [debouncedValue, submitSearch]);
 
   const getRecipes = useCallback(async () => {
-    console.log("Am I firing now");
     const cuisineQuery = searchParams.get("cuisine");
     const recipeQueryString = searchParams.get("recipeQueryString");
-
-    console.log("cuisineQuery", cuisineQuery);
-    console.log("paramCuisine", paramCuisine);
-
-    console.log("Is it me");
-
     // const recipeQuerySkip = searchParams.get("recipeQuerySkip");
     const fetchRecipesData = await fetchRecipes(
       cuisineQuery,
@@ -93,15 +86,13 @@ export default function RecipeList() {
     setRecipesCount(0);
     setRecipes(fetchRecipesData?.recipes);
     setRecipesCount(fetchRecipesData?.count ? fetchRecipesData.count : 0);
-  }, [paramCuisine, searchParams]);
+  }, [searchParams]);
 
   const getMoreRecipes = useCallback(async () => {
-    console.log("Am I firing?");
     const cuisineQuery = searchParams.get("cuisine");
     const recipeQueryString = searchParams.get("recipeQueryString");
-    // const recipeQuerySkip = searchParams.get("recipeQuerySkip");
+
     if (recipes && recipes.length > 0 && recipes.length !== recipesCount) {
-      console.log("recipesSkip", recipesSkip);
       const skipValue = () => {
         if (recipesSkip === 0 || recipes.length === 12) {
           return 12;
@@ -118,8 +109,6 @@ export default function RecipeList() {
       );
 
       if (fetchRecipesData?.recipes) {
-        console.log("mix", recipes);
-        console.log("uh", fetchRecipesData?.recipes);
         setRecipes([...recipes, ...fetchRecipesData?.recipes]);
         setLoadMoreRecipes(false);
       }
