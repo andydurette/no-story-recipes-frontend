@@ -9,29 +9,46 @@ export interface Recipe {
   photoURL: string;
 }
 
+export interface QueriedRecipesDto {
+  recipes: Recipe[];
+  count: number;
+}
+
 export async function fetchRecipes(
   cuisineQuery: string | null,
-  recipeQueryString: string | null
-): Promise<Recipe[] | undefined> {
+  recipeQueryString: string | null,
+  recipeQuerySkip: string | null
+  // recipeQueryTake: string | null
+): Promise<QueriedRecipesDto | undefined> {
   let constructUrl = `${
     process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       ? process.env.NEXT_PUBLIC_BACKEND_URL_PATH
       : "http://localhost:4000"
   }/recipes/queryRecipes`;
-  if (cuisineQuery || recipeQueryString) {
+  if (cuisineQuery || recipeQueryString || recipeQuerySkip) {
     constructUrl = constructUrl + "?";
   }
   if (cuisineQuery) {
     constructUrl = constructUrl + `cuisineQuery=${cuisineQuery}`;
   }
   if (recipeQueryString) {
-    constructUrl = constructUrl + `${cuisineQuery ? `&` : ""}`;
-    constructUrl = constructUrl + `recipeQueryString=${recipeQueryString}`;
+    constructUrl =
+      constructUrl +
+      `${
+        constructUrl.includes("?") ? "&" : ""
+      }recipeQueryString=${recipeQueryString}`;
+  }
+  if (recipeQuerySkip) {
+    constructUrl =
+      constructUrl +
+      `${
+        constructUrl.includes("?") ? "&" : ""
+      }recipeQuerySkip=${recipeQuerySkip}`;
   }
   try {
     const res = await fetch(constructUrl);
     if (!res.ok) throw new Error("Fetch Recipes error!");
-    const data: Recipe[] = await res.json();
+    const data: QueriedRecipesDto = await res.json();
     return data;
   } catch (e) {
     if (e instanceof Error) console.log(e.stack);

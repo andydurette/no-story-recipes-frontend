@@ -1,6 +1,7 @@
 "use client";
 import { fetchRecipes, Recipe } from "@/lib/recipeApiCalls";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import leftArrow from "../../assets/leftArrow.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,42 +14,129 @@ export default function RecipeList() {
   const router = useRouter();
   // Handle search params
   const [recipes, setRecipes] = useState<Recipe[] | undefined>();
-  const [searchInput, setSearchInput] = useState<string>("");
-  const [cuisine, setCuisine] = useState<string>("All Cuisine");
+  const [recipesCount, setRecipesCount] = useState<number>(0);
+  const [recipesSkip, setRecipesSkip] = useState<number>(0);
+  const [loadMoreRecipes, setLoadMoreRecipes] = useState<boolean>(false);
   const searchParams = useSearchParams();
+  const paramCuisine = searchParams.get("cuisine");
+  const paramRecipeQueryString = searchParams.get("recipeQueryString");
+  const [searchInput, setSearchInput] = useState<string>(
+    paramRecipeQueryString ? paramRecipeQueryString : ""
+  );
+  const [cuisine, setCuisine] = useState<string>(
+    paramCuisine ? paramCuisine : "ALL_CUISINE"
+  );
+
   const debouncedValue = useDebounce<string>(searchInput, 500);
+  // const paramRouter = useParamRouter();
+
+  /////
+
+  const handleScroll = useCallback(async () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+    setRecipes((prevRecipes) => {
+      if (
+        scrollTop + clientHeight >= scrollHeight - 10 &&
+        prevRecipes &&
+        prevRecipes.length !== recipesCount
+      ) {
+        setLoadMoreRecipes(true);
+      }
+      return prevRecipes;
+    });
+  }, [recipesCount]);
+
+  // Event listener for scroll
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  /////
+
   const submitSearch = useCallback(async () => {
     const addParams = new URLSearchParams();
-    if (cuisine !== "All Cuisine") {
+    const paramCuisine = searchParams.get("cuisine");
+    const paramRecipeQueryString = searchParams.get("recipeQueryString");
+    if (cuisine !== "ALL_CUISINE") {
       addParams.set("cuisine", cuisine);
     }
     if (debouncedValue) {
       addParams.set("recipeQueryString", searchInput);
     }
-    router.push("/recipes" + "?" + addParams);
-  }, [cuisine, debouncedValue, router, searchInput]);
 
-  useEffect(() => {
-    submitSearch();
-  }, [cuisine, submitSearch]);
+    if (cuisine !== paramCuisine || searchInput !== paramRecipeQueryString) {
+      router.push("/recipes" + "?" + addParams);
+    }
+  }, [cuisine, debouncedValue, router, searchInput, searchParams]);
 
   useEffect(() => {
     submitSearch();
   }, [debouncedValue, submitSearch]);
 
-  useEffect(() => {
-    async function getRecipes() {
-      const cuisineQuery = searchParams.get("cuisine");
-      const recipeQueryString = searchParams.get("recipeQueryString");
+  const getRecipes = useCallback(async () => {
+    console.log("Am I firing now");
+    const cuisineQuery = searchParams.get("cuisine");
+    const recipeQueryString = searchParams.get("recipeQueryString");
+
+    console.log("cuisineQuery", cuisineQuery);
+    console.log("paramCuisine", paramCuisine);
+
+    console.log("Is it me");
+
+    // const recipeQuerySkip = searchParams.get("recipeQuerySkip");
+    const fetchRecipesData = await fetchRecipes(
+      cuisineQuery,
+      recipeQueryString,
+      "0"
+    );
+    setRecipesCount(0);
+    setRecipes(fetchRecipesData?.recipes);
+    setRecipesCount(fetchRecipesData?.count ? fetchRecipesData.count : 0);
+  }, [paramCuisine, searchParams]);
+
+  const getMoreRecipes = useCallback(async () => {
+    console.log("Am I firing?");
+    const cuisineQuery = searchParams.get("cuisine");
+    const recipeQueryString = searchParams.get("recipeQueryString");
+    // const recipeQuerySkip = searchParams.get("recipeQuerySkip");
+    if (recipes && recipes.length > 0 && recipes.length !== recipesCount) {
+      console.log("recipesSkip", recipesSkip);
+      const skipValue = () => {
+        if (recipesSkip === 0 || recipes.length === 12) {
+          return 12;
+        } else {
+          return 0;
+        }
+      };
+      const updateSkipValue = skipValue();
+      setRecipesSkip(updateSkipValue);
       const fetchRecipesData = await fetchRecipes(
         cuisineQuery,
-        recipeQueryString
+        recipeQueryString,
+        `${updateSkipValue}`
       );
-      setRecipes(fetchRecipesData);
-    }
 
+      if (fetchRecipesData?.recipes) {
+        console.log("mix", recipes);
+        console.log("uh", fetchRecipesData?.recipes);
+        setRecipes([...recipes, ...fetchRecipesData?.recipes]);
+        setLoadMoreRecipes(false);
+      }
+    } else {
+      setLoadMoreRecipes(false);
+    }
+  }, [recipes, recipesCount, recipesSkip, searchParams]);
+
+  useEffect(() => {
+    if (loadMoreRecipes && recipes && recipes.length > 0) {
+      getMoreRecipes();
+    }
+  }, [searchParams, loadMoreRecipes, getRecipes, getMoreRecipes, recipes]);
+
+  useEffect(() => {
     getRecipes();
-  }, [searchParams]);
+  }, [getRecipes]);
 
   return (
     <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl min-w-full -mb-10">
