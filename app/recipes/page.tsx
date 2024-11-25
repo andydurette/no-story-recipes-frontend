@@ -1,9 +1,6 @@
 "use client";
 import { fetchRecipes, Recipe } from "@/lib/recipeApiCalls";
 import { useCallback, useEffect, useRef, useState } from "react";
-
-import leftArrow from "../../assets/leftArrow.svg";
-import Image from "next/image";
 import Link from "next/link";
 import RecipeSearch from "@/components/recipeSearch";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -128,7 +125,7 @@ export default function RecipeList() {
   }, [getRecipes]);
 
   return (
-    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl min-w-full -mb-10">
+    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl lg:min-w-[1024px] xl:min-w-[1368px] -mb-10">
       <div className="basis-full mb-4 ">
         <RecipeSearch
           cuisine={cuisine}
@@ -143,38 +140,24 @@ export default function RecipeList() {
           return (
             <div
               key={recipe.displayUrl}
-              className="rounded-lgborder-gray-700 bg-dark-tang overflow-hidden shadow-xl m-2 flex-[1_0_75%] md:flex-[1_0_40%] 
-              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-md rounded"
+              className="overflow-hidden  m-2 flex-[1_0_75%] md:flex-[1_0_40%] 
+              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-md"
             >
-              <div
-                className="w-full h-[175px] xl:h-[200px]"
-                style={{
-                  backgroundImage: `url(${recipe.photoURL})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              ></div>
-              <div className="h-[calc(100%-175px)] xl:h-[calc(100%-200px)] p-4 flex flex-col justify-between content-between items-stretch justify-items-stretch">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
-                  {recipe.name}
-                </h5>
-                <p className="mb-3 font-normal text-white">
-                  {recipe.description}
-                </p>
-                <Link
-                  href={`/recipes/${recipe.displayUrl}`}
-                  className="w-[150px] inline-flex items-center px-3 py-2 text-md font-medium text-center text-white 
-                  bg-light-grey hover:bg-medium-grey rounded-lg  focus:ring-4 focus:outline-none focus:ring-orange-300  hover:bg-redium-gray"
-                >
-                  View Recipe
-                  <Image
-                    src={leftArrow}
-                    alt="left arrow"
-                    quality={10}
-                    className="w-[20px] h-[20px] object-contain ml-2 text-white"
-                  />
-                </Link>
-              </div>
+              <Link href={`/recipes/${recipe.displayUrl}`}>
+                <div
+                  className="w-full h-[250px] xl:h-[275px] mb-2 rounded"
+                  style={{
+                    backgroundImage: `url(${recipe.photoURL})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+                <div className="flex flex-col justify-between content-between items-stretch justify-items-stretch">
+                  <h5 className="text-1xl font-bold tracking-tight text-white">
+                    {recipe.name.toUpperCase()}
+                  </h5>
+                </div>
+              </Link>
             </div>
           );
         })}
