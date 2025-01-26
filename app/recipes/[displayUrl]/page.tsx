@@ -4,7 +4,7 @@ import {
   fetchRecipeByDisplayUrl,
 } from "@/lib/recipeApiCalls";
 import { useEffect, useState } from "react";
-import IngredientCheckBox from "../../../components/ingredientCheckBox";
+import IngredientCheckBox from "../../../components/IngredientCheckBox";
 
 export default function Recipe({ params }: any) {
   const displayUrl = params.displayUrl;
