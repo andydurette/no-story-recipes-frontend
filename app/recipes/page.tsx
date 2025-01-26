@@ -125,7 +125,7 @@ export default function RecipeList() {
   }, [getRecipes]);
 
   return (
-    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl lg:min-w-[1024px] xl:min-w-[1368px] -mb-10">
+    <main className="flex min-h-full flex-row content-start py-4 px-4 md:py-16 md:px-16 flex-wrap max-w-screen-xl lg:min-w-[1024px] xl:min-w-[1280px] -mb-10">
       <div className="basis-full mb-4 ">
         <RecipeSearch
           cuisine={cuisine}

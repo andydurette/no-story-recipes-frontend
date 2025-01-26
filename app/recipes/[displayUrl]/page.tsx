@@ -4,6 +4,7 @@ import {
   fetchRecipeByDisplayUrl,
 } from "@/lib/recipeApiCalls";
 import { useEffect, useState } from "react";
+import IngredientCheckBox from "../../../components/ingredientCheckBox";
 
 export default function Recipe({ params }: any) {
   const displayUrl = params.displayUrl;
@@ -21,8 +22,8 @@ export default function Recipe({ params }: any) {
     <>
       {recipe ? (
         <main className="flex min-h-full flex-col justify-center content-center flex-wrap min-w-full">
-          <div className="flex flex-row content-start pt-4 px-4 md:px-8 flex-wrap max-w-screen-xl md:min-w-[768px] lg:min-w-[1024px] xl:min-w-[1368px] content-center m-auto ">
-            <h1 className="mt-4 text-2xl  lg:text-3xl xl:text-4xl font-bold tracking-tight text-white medium-grey min-w-full">
+          <div className="flex flex-row content-start pt-4 px-4 md:px-8 flex-wrap max-w-screen-xl md:min-w-[768px] lg:min-w-[1024px] xl:min-w-[1280px] content-center m-auto ">
+            <h1 className="mt-4 text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight text-white medium-grey min-w-full">
               {recipe.name.toUpperCase()}
             </h1>
             <h2 className="mt-6 mb-8 text-lg xl:text-2xl tracking-tight text-white font-light min-w-full">
@@ -46,15 +47,9 @@ export default function Recipe({ params }: any) {
                 </div>
                 <div className="flex flex-col w-5/5 lg:w-3/5 justify-start content-start items-start">
                   {recipe &&
-                    recipe.ingredients.map((r: string, i: number) => {
+                    recipe.ingredients.map((ingredient: string, i: number) => {
                       return (
-                        <div key={i} className="flex items-center mb-4 mr-4 ">
-                          <ul className="ml-5 flex flex-row sm:flex-col">
-                            <li className="list-disc text-xl font-extralight">
-                              {r}
-                            </li>
-                          </ul>
-                        </div>
+                        <IngredientCheckBox key={i} ingredient={ingredient} />
                       );
                     })}
                 </div>
