@@ -55,7 +55,7 @@ export default function Recipe({ params }: any) {
                 </div>
               </div>
               <div className="flex flex-col w-5/5 lg:w-3/5">
-                <h2 className="md:ml-0 basis-full sm:basis-auto mb-4 text-xl md:text-2xl  text-white font-semibold">
+                <h2 className="md:ml-0 basis-full mt-6 lg:mt-0 sm:basis-auto mb-4 text-xl md:text-2xl  text-white font-semibold">
                   DIRECTIONS
                 </h2>
                 {recipe &&
