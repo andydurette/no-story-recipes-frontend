@@ -1,3 +1,10 @@
+export interface directionsAndIngredientsList {
+  for: string;
+  ingredientList: string[];
+  directionList: string[];
+  recipeId: number;
+}
+
 export interface Recipe {
   id: string;
   displayUrl: string;
@@ -5,6 +12,7 @@ export interface Recipe {
   description: string;
   directions: string[];
   ingredients: string[];
+  directionsAndIngredientsList: directionsAndIngredientsList[];
   name: string;
   photoURL: string;
 }

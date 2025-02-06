@@ -18,6 +18,10 @@ export default function Recipe({ params }: any) {
     getRecipe();
   }, [displayUrl]);
 
+  useEffect(() => {
+    console.log("recipe", recipe);
+  }, [recipe]);
+
   return (
     <>
       {recipe ? (
@@ -41,36 +45,71 @@ export default function Recipe({ params }: any) {
             <div className="flex sm:flex-col md:flex-row flex-wrap xl:flex-nowrap mt-8 mx-auto">
               <div className="flex flex-col w-5/5 lg:w-2/5">
                 <div>
-                  <h2 className="md:ml-0 basis-full mb-4 text-xl md:text-2xl tracking-tight text-white font-semibold flex flex-wrap">
+                  <h2 className="md:ml-0 basis-full mt-6 lg:mt-0 sm:basis-auto mb-4 text-2xl md:text-3xl  text-white font-semibold">
                     INGREDIENTS
                   </h2>
                 </div>
                 <div className="flex flex-col w-5/5 lg:w-3/5 justify-start content-start items-start">
                   {recipe &&
-                    recipe.ingredients.map((ingredient: string, i: number) => {
+                    recipe.directionsAndIngredientsList.map((ingredients) => {
                       return (
-                        <IngredientCheckBox key={i} ingredient={ingredient} />
+                        <>
+                          {recipe.directionsAndIngredientsList.length > 1 && (
+                            <h3 className="md:ml-0 basis-full mt-6  sm:basis-auto mb-4 text-xl md:text-2xl  text-white font-semibold">
+                              {ingredients.for}
+                            </h3>
+                          )}
+
+                          {ingredients.ingredientList.map(
+                            (r: string, i: number) => {
+                              return (
+                                <>
+                                  <IngredientCheckBox key={i} ingredient={r} />
+                                </>
+                              );
+                            }
+                          )}
+                        </>
                       );
                     })}
                 </div>
               </div>
               <div className="flex flex-col w-5/5 lg:w-3/5">
-                <h2 className="md:ml-0 basis-full mt-6 lg:mt-0 sm:basis-auto mb-4 text-xl md:text-2xl  text-white font-semibold">
+                <h2 className="md:ml-0 basis-full mt-6 lg:mt-0 sm:basis-auto mb-4 text-2xl md:text-3xl  text-white font-semibold">
                   DIRECTIONS
                 </h2>
                 {recipe &&
-                  recipe.directions.map((r: string, i: number) => {
+                  recipe.directionsAndIngredientsList.map((directions) => {
                     return (
-                      <div key={i}>
-                        {/* <h3 className="mb-4 text-xl md:text-2xl text-gray-900 font-semibold text-white">
-                          Step {i + 1}
-                        </h3> */}
-                        <div key={i} className="flex items-center mb-4">
-                          <p className="text-xl font-extralight">
-                            <span className="font-bold">{i + 1}.</span> {r}
-                          </p>
-                        </div>
-                      </div>
+                      <>
+                        {recipe.directionsAndIngredientsList.length > 1 && (
+                          <h3 className="md:ml-0 basis-full mt-6  sm:basis-auto mb-4 text-xl md:text-2xl  text-white font-semibold">
+                            {directions.for}
+                          </h3>
+                        )}
+
+                        {directions.directionList.map(
+                          (r: string, i: number) => {
+                            return (
+                              <>
+                                <div key={i}>
+                                  <div
+                                    key={i}
+                                    className="flex items-center mb-4"
+                                  >
+                                    <p className="text-xl font-extralight">
+                                      <span className="font-bold">
+                                        {i + 1}.
+                                      </span>{" "}
+                                      {r}
+                                    </p>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          }
+                        )}
+                      </>
                     );
                   })}
               </div>
