@@ -10,9 +10,9 @@ export interface Recipe {
   displayUrl: string;
   cuisine: string;
   description: string;
-  directions: string[];
-  ingredients: string[];
   directionsAndIngredientsList: directionsAndIngredientsList[];
+  relatedTo: Recipe[];
+  relatedRecipes: Recipe[];
   name: string;
   photoURL: string;
 }

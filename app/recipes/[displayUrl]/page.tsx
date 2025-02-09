@@ -5,6 +5,7 @@ import {
 } from "@/lib/recipeApiCalls";
 import { useEffect, useState } from "react";
 import IngredientCheckBox from "../../../components/IngredientCheckBox";
+import Link from "next/link";
 
 export default function Recipe({ params }: any) {
   const displayUrl = params.displayUrl;
@@ -13,14 +14,11 @@ export default function Recipe({ params }: any) {
   useEffect(() => {
     async function getRecipe() {
       const fetchRecipesData = await fetchRecipeByDisplayUrl(displayUrl);
+      console.log("data", fetchRecipesData);
       setRecipe(fetchRecipesData);
     }
     getRecipe();
   }, [displayUrl]);
-
-  useEffect(() => {
-    console.log("recipe", recipe);
-  }, [recipe]);
 
   return (
     <>
@@ -42,7 +40,7 @@ export default function Recipe({ params }: any) {
               }}
             ></div>
 
-            <div className="flex sm:flex-col md:flex-row flex-wrap xl:flex-nowrap mt-8 mx-auto">
+            <div className="flex sm:flex-col md:flex-row flex-wrap xl:flex-nowrap mt-8 mx-auto min-w-full">
               <div className="flex flex-col w-5/5 lg:w-2/5">
                 <div>
                   <h2 className="md:ml-0 basis-full mt-6 lg:mt-0 sm:basis-auto mb-4 text-2xl md:text-3xl  text-white font-semibold">
@@ -113,6 +111,54 @@ export default function Recipe({ params }: any) {
                     );
                   })}
               </div>
+            </div>
+            {recipe.relatedRecipes.length > 0 && (
+              <h2 className="md:ml-0 basis-full mt-8  mb-4 text-2xl md:text-3xl text-white font-semibold">
+                RELATED RECIPES
+              </h2>
+            )}
+            <div className="flex flex-row content-start mb-4 flex-wrap w-full">
+              {recipe &&
+                recipe.relatedRecipes.map((recipe) => {
+                  return (
+                    <div
+                      key={recipe.displayUrl}
+                      className="overflow-hidden m-2 flex-[1_0_75%] md:flex-[1_0_45%] 
+              lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] max-w-screen-md"
+                    >
+                      <Link href={`/recipes/${recipe.displayUrl}`}>
+                        <div
+                          className="w-full h-[250px] xl:h-[275px] mb-2 rounded"
+                          style={{
+                            backgroundImage: `url(${recipe.photoURL})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        ></div>
+                        <div className="flex flex-col justify-between content-between items-stretch justify-items-stretch">
+                          <h5 className="text-1xl font-bold tracking-tight text-white">
+                            {recipe.name.toUpperCase()}
+                          </h5>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              {/* Forces flex alignment of list items */}
+              <div
+                className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_45%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
+        "
+                style={{ visibility: "hidden" }}
+              ></div>
+              <div
+                className="
+        rounded-lg border-gray-700 bg-heavy-grey overflow-hidden shadow-xl max-w-screen-md
+        flex-[1_0_75%] md:flex-[1_0_45%] lg:flex-[1_0_25%] 2xl:flex-[1_0_20%] m-2
+        "
+                style={{ visibility: "hidden" }}
+              ></div>
             </div>
           </div>
         </main>
